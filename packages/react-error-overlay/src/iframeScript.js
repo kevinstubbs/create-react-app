@@ -65,4 +65,14 @@ document.body.style['max-width'] = '100vw';
 iframeRoot = document.createElement('div');
 applyStyles(iframeRoot, overlayStyle(theme));
 document.body.appendChild(iframeRoot);
-window.parent.__REACT_ERROR_OVERLAY_GLOBAL_HOOK__.iframeReady();
+
+if (window.parent.__REACT_ERROR_OVERLAY_GLOBAL_HOOK__) {
+  window.parent.__REACT_ERROR_OVERLAY_GLOBAL_HOOK__.iframeReady();
+} else {
+  window.updateContent({
+    currentBuildError: null,
+    currentRuntimeErrorRecords: "", 
+    dismissRuntimeErrors: null,
+    editorHandler: null,
+  });
+}
